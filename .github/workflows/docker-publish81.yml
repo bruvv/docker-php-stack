@@ -9,7 +9,9 @@ on:
   schedule:
     - cron: "20 11 * * *"
   push:
-    branches: [main]
+    paths:
+      - "./php81/Dockerfile"
+    #branches: [main]
     # Publish semver tags as releases.
     tags: ["v*.*.*"]
 
