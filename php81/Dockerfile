@@ -1,8 +1,4 @@
-FROM php:8.1.4-apache-buster
-
-# Surpresses debconf complaints of trying to install apt packages interactively
-# https://github.com/moby/moby/issues/4032#issuecomment-192327844
-
+FROM php:8.1-apache-buster
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install pickle
@@ -41,12 +37,17 @@ RUN apt-get -y update && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install xdebug
-RUN pickle install xdebug && \
+RUN pickle install xdebug-3.0.0 && \
     docker-php-ext-enable xdebug
 
 # Install redis
-RUN pickle install redis && \
+RUN pickle install redis-5.3.3 && \
     docker-php-ext-enable redis
+
+# Install imagick
+RUN apt-get update && \
+    apt-get -y --no-install-recommends install --fix-missing libmagickwand-dev && \
+    rm -rf /var/lib/apt/lists/*
 
 # Install imagick
 RUN apt-get update && \
@@ -56,19 +57,18 @@ RUN apt-get update && \
     docker-php-ext-enable imagick
 
 # Other PHP8 Extensions
-RUN docker-php-ext-install pdo_mysql && \
-    docker-php-ext-install pdo_sqlite && \
-    docker-php-ext-install mysqli && \
-    docker-php-ext-install curl && \
-    docker-php-ext-install tokenizer && \
-    docker-php-ext-install json && \
-    docker-php-ext-install zip && \
-    docker-php-ext-install -j$(nproc) intl && \
-    docker-php-ext-install mbstring && \
-    docker-php-ext-install gettext && \
-    docker-php-ext-install calendar && \
-    docker-php-ext-install exif
-
+RUN docker-php-ext-install pdo_mysql
+RUN docker-php-ext-install pdo_sqlite
+RUN docker-php-ext-install mysqli
+RUN docker-php-ext-install curl
+RUN docker-php-ext-install tokenizer
+#RUN docker-php-ext-install json does not work (yet)
+RUN docker-php-ext-install zip
+RUN docker-php-ext-install -j$(nproc) intl
+RUN docker-php-ext-install mbstring
+RUN docker-php-ext-install gettext
+RUN docker-php-ext-install calendar 
+RUN docker-php-ext-install exif
 
 # Install Freetype 
 RUN apt-get -y update && \
