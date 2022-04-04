@@ -10,6 +10,8 @@ on:
     - cron: "20 11 * * *"
   push:
     branches: [main]
+    paths:
+      - "./php80/Dockerfile"
     # Publish semver tags as releases.
     tags: ["v*.*.*"]
 
