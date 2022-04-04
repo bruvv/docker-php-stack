@@ -48,11 +48,6 @@ RUN pickle install redis-5.3.3 && \
 # Install imagick
 RUN apt-get update && \
     apt-get -y --no-install-recommends install --fix-missing libmagickwand-dev && \
-    rm -rf /var/lib/apt/lists/*
-
-# Install imagick
-RUN apt-get update && \
-    apt-get -y --no-install-recommends install --fix-missing libmagickwand-dev && \
     rm -rf /var/lib/apt/lists/* && \
     pickle install imagick && \
     docker-php-ext-enable imagick
