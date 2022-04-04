@@ -37,17 +37,12 @@ RUN apt-get -y update && \
     curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Install xdebug
-RUN pickle install xdebug-3.0.0 && \
+RUN pickle install xdebug && \
     docker-php-ext-enable xdebug
 
 # Install redis
-RUN pickle install redis-5.3.3 && \
+RUN pickle install redis && \
     docker-php-ext-enable redis
-
-# Install imagick
-RUN apt-get update && \
-    apt-get -y --no-install-recommends install --fix-missing libmagickwand-dev && \
-    rm -rf /var/lib/apt/lists/*
 
 # Install imagick
 RUN apt-get update && \
