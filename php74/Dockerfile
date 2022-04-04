@@ -69,7 +69,6 @@ RUN docker-php-ext-install pdo_mysql && \
     docker-php-ext-install calendar && \
     docker-php-ext-install exif
 
-
 # Install Freetype 
 RUN apt-get -y update && \
     apt-get --no-install-recommends install -y libfreetype6-dev \
