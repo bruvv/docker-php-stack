@@ -6,8 +6,8 @@ name: Docker-PHP74
 # documentation.
 
 on:
-  schedule:
-    - cron: "20 11 * * *"
+#   schedule:
+#     - cron: "20 11 * * *"
   push:
     branches: [main]
     paths:
@@ -64,7 +64,7 @@ jobs:
           images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           #flavor: prefix=php74 #this becomes php74main
           tags: |
-            type=raw,value=php74-{{branch}}
+            type=raw,value=php74-latest
           
 
       # Build and push Docker image with Buildx (don't push on PR)
