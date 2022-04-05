@@ -11,7 +11,7 @@ on:
   push:
     branches: [main]
     paths:
-      - "PHP80/Dockerfile"
+      - "php80/Dockerfile"
     # Publish semver tags as releases.
     tags: ["v*.*.*"]
 
