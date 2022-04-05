@@ -1,5 +1,4 @@
 FROM php:8.1-apache-buster
-
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install pickle
