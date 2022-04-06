@@ -64,6 +64,7 @@ RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install gettext
 RUN docker-php-ext-install calendar 
 RUN docker-php-ext-install exif
+RUN docker-php-ext-install opcache
 
 # Install Freetype 
 RUN apt-get -y update && \
@@ -76,6 +77,10 @@ RUN apt-get -y update && \
 
 # Enable apache modules
 RUN a2enmod rewrite headers expires
+
+# without the following line we get "AH00558: apache2: Could not reliably determine the server's fully qualified domain name"
+# autorise .htaccess files
+RUN sed -i '/<Directory \/var\/www\/>/,/<\/Directory>/ s/AllowOverride None/AllowOverride All/' /etc/apache2/apache2.conf
 
 # Cleanup
 RUN apt-get purge -y --auto-remove \

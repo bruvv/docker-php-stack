@@ -76,7 +76,6 @@ RUN apt-get -y update && \
 
 # Enable apache modules
 RUN a2enmod rewrite headers expires
-RUN ls /etc/apache2/mods-available/
 
 # without the following line we get "AH00558: apache2: Could not reliably determine the server's fully qualified domain name"
 # autorise .htaccess files
