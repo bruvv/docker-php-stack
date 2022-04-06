@@ -1,6 +1,5 @@
 FROM php:8.0-apache-buster
 
-
 ARG DEBIAN_FRONTEND=noninteractive
 
 # Install pickle
@@ -13,7 +12,6 @@ RUN apt-get -y update --fix-missing && \
     apt-get upgrade -y && \
     apt-get --no-install-recommends install -y apt-utils && \
     rm -rf /var/lib/apt/lists/*
-
 
 # Install useful tools and install important libaries
 RUN apt-get -y update && \
@@ -59,7 +57,7 @@ RUN docker-php-ext-install pdo_sqlite
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install curl
 RUN docker-php-ext-install tokenizer
-#RUN docker-php-ext-install json does not work (yet)
+#RUN docker-php-ext-install json # does not work (yet)
 RUN docker-php-ext-install zip
 RUN docker-php-ext-install -j$(nproc) intl
 RUN docker-php-ext-install mbstring

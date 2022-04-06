@@ -1,13 +1,8 @@
 name: Docker-PHP80
 
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
 on:
-#   schedule:
-#     - cron: "20 11 * * *"
+  #   schedule:
+  #     - cron: "20 11 * * *"
   push:
     branches: [main]
     paths:
@@ -65,7 +60,6 @@ jobs:
           #flavor: prefix=PHP80 #this becomes PHP80main
           tags: |
             type=raw,value=PHP80-latest
-          
 
       # Build and push Docker image with Buildx (don't push on PR)
       # https://github.com/docker/build-push-action
