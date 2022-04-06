@@ -76,6 +76,7 @@ RUN apt-get -y update && \
 
 # Enable apache modules
 RUN a2enmod rewrite headers expires
+RUN ln -s /etc/apache2/mods-available/expires.load /etc/apache2/mods-enabled/
 
 # Cleanup
 RUN apt-get purge -y --auto-remove \
