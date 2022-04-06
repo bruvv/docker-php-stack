@@ -64,9 +64,9 @@ RUN docker-php-ext-install mbstring
 RUN docker-php-ext-install gettext
 RUN docker-php-ext-install calendar 
 RUN docker-php-ext-install exif
-RUN docker-php-ext-install expires
+RUN docker-php-ext-install opcache
 
-# Install Freetype 
+# Install Freetype
 RUN apt-get -y update && \
     apt-get --no-install-recommends install -y libfreetype6-dev \
     libjpeg62-turbo-dev \
@@ -77,7 +77,6 @@ RUN apt-get -y update && \
 
 # Enable apache modules
 RUN a2enmod rewrite headers expires
-RUN ll /etc/apache2/mods-available/
 
 # Cleanup
 RUN apt-get purge -y --auto-remove \
