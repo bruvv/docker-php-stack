@@ -2,34 +2,9 @@
   "extends": [
     "config:base"
   ],
-  "assigneesFromCodeOwners": true,
-  "packageRules": [
-    {
-      "matchPackagePatterns": [
-        "*"
-      ],
-      "matchUpdateTypes": [
-        "minor",
-        "patch"
-      ],
-      "groupName": "all non-major dependencies",
-      "groupSlug": "all-minor-patch",
-      "automerge": false,
-      "labels": [
-        "dependencies"
-      ]
-    },
-    {
-      "matchPackagePatterns": [
-        "*"
-      ],
-      "matchUpdateTypes": [
-        "major"
-      ],
-      "labels": [
-        "dependencies",
-        "breaking"
-      ]
-    }
-  ]
+  "rangeStrategy": "pin",
+  "packageRules": [{
+    "excludePackageNames": ["php"],
+    "automerge": false
+  }]
 }
