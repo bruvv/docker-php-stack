@@ -1,7 +1,7 @@
 {
   "extends": ["config:base"],
   "assigneesFromCodeOwners": true,
-  "ignoreDeps": ["php"].
+  "ignoreDeps": ["php"],
   "automerge": true
 }
 
